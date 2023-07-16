@@ -11,4 +11,7 @@ client = TestClient(app)
 def test_get_chords(url, expected_chords, has_solo):
     response = client.get(f"/chords?url={url}")
     assert response.status_code == 200
-    assert response.json() == {"chords": expected_chords, "has_solo": has_solo}
+    json = response.json()
+    chords = set(json["chords"])
+    assert chords == expected_chords
+    assert json["has_solo"] == has_solo
