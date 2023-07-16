@@ -1,6 +1,7 @@
 requests
 bs4
 fastapi
+uvicorn[standard]
 
 # Testing
 pytest

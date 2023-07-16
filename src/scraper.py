@@ -3,9 +3,6 @@ from bs4 import BeautifulSoup
 from src.utils import is_chord
 
 
-# url = "https://www.cifraclub.com/marcela-morelo/luz-del-cielo/"
-url = "https://www.cifraclub.com/fabiana-cantilo/mi-enfermedad/"
-
 def get_raw(url: str):
     response = requests.get(url)
     html_content = response.text
