@@ -2,6 +2,7 @@ requests
 bs4
 fastapi
 uvicorn[standard]
+httpx
 
 # Testing
 pytest
