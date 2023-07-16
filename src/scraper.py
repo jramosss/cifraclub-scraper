@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from utils import is_chord
+from src.utils import is_chord
 
 
 # url = "https://www.cifraclub.com/marcela-morelo/luz-del-cielo/"

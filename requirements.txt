@@ -1,2 +1,7 @@
 requests
 bs4
+fastapi
+
+# Testing
+pytest
+pytest-sugar
