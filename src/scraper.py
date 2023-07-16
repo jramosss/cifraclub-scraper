@@ -11,21 +11,19 @@ def get_raw(url: str):
 
     pre_section = soup.find("pre")
 
-    return pre_section.get_text().splitlines()
+    output = pre_section.get_text().splitlines()
+    splitted = [x.split(' ') for x in output]
+    return list(filter(lambda x: x != '', splitted))
 
 def get_chords(raw: list[str]):
     chords = []
     has_solo = False
 
     for line in raw:
-        if not line.strip():
-            continue
-        
-        splitted_line = list(filter(lambda x: x != '', line.split(' ')))
-        if '-' in splitted_line[0]:
+        if '-' in line[0]:
             has_solo = True
-        elif any(is_chord(x) for x in splitted_line):
-            chords.extend([x for x in splitted_line if is_chord(x)])
+        elif any(is_chord(x) for x in line):
+            chords.extend([x for x in line if is_chord(x)])
 
     return set(chords), has_solo
 
@@ -33,12 +31,8 @@ def get_lyrics(raw: list[str]):
     lyrics = []
 
     for line in raw:
-        if not line.strip():
-            continue
-        
-        splitted_line = list(filter(lambda x: x != '', line.split(' ')))
-        if not any(is_chord(x) for x in splitted_line):
-            lyrics.extend(splitted_line)
+        if not any(is_chord(x) for x in line):
+            lyrics.extend(line)
             lyrics.append('\n')
 
     return ' '.join(lyrics)
